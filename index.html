@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelope Interativo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <style>
+        /* Estilos gerais para o corpo da página */
+        body {
+            margin: 0;
+            /* Cor de fundo da página */
+            background-color: rgb(5, 53, 61); 
+            /* Fonte principal do texto, mudada pelo link do Google Fonts */
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Garante que o conteúdo fique centralizado na tela toda */
+            min-height: 100vh;
+        }
+
+        /* Estilos para o container principal */
+        .container {
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        /* Estilos para o envelope */
+        .envelope {
+            /* Tamanho da largura e altura do envelope */
+            width: 320px;
+            height: 190px;
+            /* Cor de fundo do envelope fechado */
+            background-color: #e6cfa7; 
+            /* Estilo da borda */
+            border: 2px solid #a88264; 
+            /* Efeito de sombra */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+            /* Muda o cursor para uma mãozinha ao passar por cima */
+            cursor: pointer;
+            overflow: hidden;
+            /* Velocidade da transição de abertura (ex: 0.5s = meio segundo) */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Estilos para a aba do envelope */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Cor de fundo da aba, usando um gradiente */
+            background: linear-gradient(to bottom right, #e6c5a0, #d4a076);
+            /* Cria o formato de triângulo */
+            clip-path: polygon(0 0,50% 50%, 100% 0, 100% 100%, 0 100%);
+            transform-origin: top;
+            transform: rotateX(0deg);
+            /* Velocidade da animação da aba ao abrir */
+            transition: transform 0.5s ease-in-out; 
+        }
+
+        /* Estilos para a carta */
+        .carta {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            /* Altura da carta. Aumente para mais espaço de texto. */
+            height: 200px;
+            padding: 20px;
+            /* Cor de fundo da carta */
+            background-color: #fff8e8;
+            /* Estilo da borda da carta */
+            border: 1px solid #a88264; 
+            box-sizing: border-box;
+            /* Velocidade da animação da carta ao subir */
+            transition: transform 0.5s ease-in-out;
+            transform: translateY(0%);
+            z-index: 10;
+            /* Cria a barra de rolagem vertical apenas se o texto for maior que o espaço */
+            overflow-y: auto; 
+        }
+
+        .carta h2 {
+            margin-top: 0;
+            /* Cor do título da carta */
+            color: #724d36;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .carta p {
+            /* Tamanho da fonte e cor do texto da carta */
+            font-size: 15px;
+            color: #4b3832;
+            text-align: justify;
+        }
+
+        /* Animação: quando a classe 'aberto' é adicionada ao envelope */
+        .envelope.aberto .flap {
+            /* Gira a aba para abrir. Não mude este valor. */
+            transform: rotateX(180deg);
+        }
+        
+        .envelope.aberto .carta {
+            /* Move a carta para cima. Não mude este valor. */
+            transform: translateY(-100%);
+        }
+
+        ::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #01040a; 
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: trasparent; 
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="envelope" onclick="abrirEnvelope()">
+        <div class="flap"></div>
+        <div class="carta">
+            <h2>Feliz aniversário! 🥳</h2>
+            <p>
+               Meus sinceros parabéns por esta nova etapa! Desejo que ela seja marcada por novas realizações e crescimento. Que Deus a abençoe! Que todos os seus desafios sejam superados e que cada objetivo alcançado seja apenas o início de um grande futuro. <br>
+               <br>
+               Quebrei um pouco a cabeça para escrever e fazer do zero esta carta, mas queria dizer que você é uma pessoa muito especial para mim. Não sei exatamente o que você pensa, e sei que disse que não seria muito sentimental ou demonstraria tanto afeto, respeito isso, mas tenho orgulho de dizer que, de todas as escolhas sobre o meu futuro que já fiz, você foi a única e a primeira que realmente tive o prazer de conhecer. Lembro do nosso primeiro encontro, das conversas, dos carinhos e de não precisar ir ao cinema sozinho… momentos que jamais esquecerei<br>
+               <br>
+               Admiro seus valores, o quanto você é dedicada ao que faz e a forma como ajuda sua mãe e sua irmã nos deveres. É bonito ver isso em uma pessoa, e ainda mais admirável como você consegue ser tão carinhosa, inteligente, determinada e uma verdadeira princesa. <br>
+               <br>
+               Mais do que desejar um feliz aniversário, hoje eu digo em voz alta que você é uma pessoa incrível. Você não faz ideia da sorte que tive ao te conhecer. Minha DM sempre foi mais árida que o deserto de Mad Max, nunca fui de me socializar muito, sempre tive um grupo seleto de amigos, então era difícil conhecer alguém… até que decidi criar meu perfil e deixar meu @ no app. Desde então, cada mensagem, cada conversa, cada encontro e cada novo sentimento com você se tornaram momentos que guardo com muito carinho. <br>
+               <br>
+               Saiba que, independentemente do que ocorrer, estarei sempre ao seu lado, em qualquer ocasião, para te ajudar, te ouvir e compartilhar cada instante da vida. <br>
+               <br>
+               Feliz aniversário! Bjs 🫶🏻
+</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*
+    * FUNCIONALIDADE - JAVASCRIPT *
+    Esta função adiciona ou remove a classe 'aberto' do envelope.
+    Não é necessário mudar o código, a menos que você queira mudar
+    o nome da função ou da classe. Se mudar, certifique-se de que
+    eles correspondam no HTML e no CSS.
+    */
+    function abrirEnvelope() {
+        const envelope = document.querySelector('.envelope');
+        envelope.classList.toggle('aberto');
+    }
+</script>
+
+</body>
+</html>
